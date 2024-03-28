@@ -1,0 +1,18 @@
+:root {
+    --main-color: #5280e2;
+    --secondary-color: #e5ecfb;
+}
+
+@import "fonts";
+@import "layout/header";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: "Montserrat Medium", sans-serif;
+}
+

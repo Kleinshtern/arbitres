@@ -1,6 +1,23 @@
 <template>
-    <div id="slider-overflow">
-
+    <div id="slider">
+        <div class="slider-item">
+            slide 1
+        </div>
+        <div class="slider-item">
+            slide 1
+        </div>
+        <div class="slider-item">
+            slide 1
+        </div>
+        <div class="slider-item">
+            slide 1
+        </div>
+        <div class="slider-item">
+            slide 1
+        </div>
+        <div class="slider-item">
+            slide 1
+        </div>
     </div>
 </template>
 
@@ -24,4 +41,6 @@
     }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

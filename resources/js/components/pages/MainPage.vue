@@ -32,7 +32,7 @@
         <div class="row align-items-center mt-3 mb-2">
             <div class="col-sm-9">
                 <h2 class="title">
-                    <i :class="popularReviews.icon" style="color: var(--main-color)"></i>
+                    <i :class="popularReviews.icon" class="fa-rotate-by" style="--fa-rotate-angle: -25deg; color: var(--main-color)"></i>
                     <span class="ms-2">
                     {{ popularReviews.title }}
                     </span>
@@ -48,7 +48,110 @@
             </div>
         </div>
         <div class="row">
-            <slider-component :items="popularReviews.reviews"></slider-component>
+            <slider-component
+                :items="popularReviews.reviews"
+            >
+                <template v-slot:slider-content="{ item }">
+                    <p class="h6">
+                        <strong>{{ item.person }}</strong>
+                        <br>
+                        <small class="text-body-secondary">{{ item.date }}</small>
+                    </p>
+                    <rating-component :rating="item.rating"></rating-component>
+                    <p class="lh-lg fs-6">
+                        {{ item.text }}
+                    </p>
+                    <p>
+                        <small class="text-body-secondary">Отзыв про:</small>
+                        <br>
+                        <strong>{{ item.university.name }}</strong>
+                    </p>
+                </template>
+            </slider-component>
+        </div>
+    </div>
+
+    <div id="rating-and-found">
+        <div class="row mt-3 mb-2">
+            <div class="col-md-12 col-lg-8">
+                <div class="information">
+                    <h2 class="title">
+                        Оценивайте и находите ВУЗы России!
+                    </h2>
+                    <p>
+                        Мы взяли за основу "сливы" о вузах, которые пользователи нашего сайта
+                        присылают нам. Слив - это развернутый отзыв о вузе, который проходит несколько
+                        этапов проверки. Слив имеет заданную характеристику.
+                        Он может быть положительным, отрицательным или нейтральным.
+                        Мы просим студентов, преподавателей, сотрудников вуза, просто людей, которые знают о
+                        вузе изнутри.
+                    </p>
+                </div>
+                <div class="buttons-block">
+                    <custom-button
+                        label="Оставить отзыв"
+                        color="#5280e2"
+                        variant="flat"
+                        prepend-icon="fa-solid fa-files"
+                        text-transform="default"
+                    ></custom-button>
+                    <custom-button
+                        label="Добавить вуз"
+                        color="#5280e2"
+                        variant="outline"
+                        prepend-icon="fa-regular fa-buildings"
+                        text-transform="default"
+                    ></custom-button>
+                </div>
+                <div class="cards-block mt-4 d-flex flex-md-column flex-lg-row justify-content-between gap-4">
+                    <v-card
+                        title="452 851"
+                        text="Отзывов в вашем городе"
+                        prepend-icon="fa-regular fa-city"
+                        alignment="right"
+                        variant="tonal"
+                        color="#5280e2"
+                        width="100%"
+                    />
+                    <v-card
+                        title="22 851"
+                        text="Ответов от компаний"
+                        prepend-icon="fa-regular fa-files"
+                        alignment="right"
+                        variant="tonal"
+                        color="#5280e2"
+                        width="100%"
+                    />
+                    <v-card
+                        title="8 512"
+                        text="Компаний на портале"
+                        prepend-icon="fa-regular fa-user-group"
+                        alignment="right"
+                        variant="tonal"
+                        color="#5280e2"
+                        width="100%"
+                    />
+                </div>
+            </div>
+            <div class="col-md-0 col-lg-4 d-md-none d-lg-block" id="rating-and-found-image"></div>
+        </div>
+    </div>
+
+    <div id="top-ten-by-ratings" class="mt-4">
+        <div class="overflow-background"></div>
+
+        <div class="content">
+            <div class="content-title">
+                <h1 class="title">
+                    <span style="color: var(--main-color); text-transform: uppercase">
+                        <i class="fa-regular fa-trophy-star"></i> Топ 10
+                    </span>
+                    ВУЗов по оценкам пользователей
+                </h1>
+                <p class="text-center">
+                    Мы провели анализ и собрали для вас лучшие вузы по оценкам пользователей из разных регионов.
+                </p>
+            </div>
         </div>
     </div>
 </template>
@@ -57,9 +160,16 @@
     import {useMainPageStore} from "../../stores/mainPageStore.js";
     import CustomButton from "../reusable/CustomButton.vue";
     import SliderComponent from "../reusable/SliderComponent.vue";
+    import RatingComponent from "../reusable/RatingComponent.vue";
+    import VCard from "../reusable/VCard.vue";
 
     export default {
-        components: {SliderComponent, CustomButton},
+        components: {
+            VCard,
+            RatingComponent,
+            SliderComponent,
+            CustomButton
+        },
         setup: () => {
             const store = useMainPageStore();
 
@@ -103,7 +213,53 @@
     }
 
     .title {
-        font-family: "Montserrat Bold", sans-serif;
+        font-family: "Inter Black", sans-serif;
     }
 
+    #rating-and-found {
+        .information {
+            > p {
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        .buttons-block {
+            display: flex;
+            gap: 2rem;
+        }
+
+        #rating-and-found-image {
+            height: inherit;
+
+            background: url("/img/rating-and-found.png") no-repeat center center;
+            background-size: contain;
+        }
+    }
+
+    #top-ten-by-ratings {
+        height: 100vh;
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .overflow-background {
+            width: 100vw;
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            height: 100%;
+
+            background: url("/img/background.jpg") no-repeat;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .content {
+            margin-top: 100px;
+        }
+    }
 </style>

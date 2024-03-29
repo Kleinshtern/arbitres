@@ -1,11 +1,5 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <header-component></header-component>
-            </div>
-        </div>
-    </div>
+    <header-component></header-component>
     <main>
         <router-view />
     </main>

@@ -176,9 +176,6 @@
           }
 
           &:hover {
-              > :before {
-                  background: var(--btn-border-color);
-              }
               > :after {
                   opacity: .2;
               }

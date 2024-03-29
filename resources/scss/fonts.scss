@@ -1,29 +1,44 @@
 @font-face {
     font-family: "Montserrat Black";
-    src: url("/public/fonts/Montserrat-Black.ttf") format("truetype");
+    src: url("/public/fonts/montserrat/Montserrat-Black.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Montserrat Medium";
-    src: url("/public/fonts/Montserrat-Medium.ttf") format("truetype");
+    src: url("/public/fonts/montserrat/Montserrat-Medium.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Montserrat Bold";
-    src: url("/public/fonts/Montserrat-Bold.ttf") format("truetype");
+    src: url("/public/fonts/montserrat/Montserrat-Bold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Montserrat ExtraBold";
-    src: url("/public/fonts/Montserrat-ExtraBold.ttf") format("truetype");
+    src: url("/public/fonts/montserrat/Montserrat-ExtraBold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Montserrat Light";
-    src: url("/public/fonts/Montserrat-Light.ttf") format("truetype");
+    src: url("/public/fonts/montserrat/Montserrat-Light.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Montserrat Regular";
-    src: url("/public/fonts/Montserrat-Regular.ttf") format("truetype");
+    src: url("/public/fonts/montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inter Light";
+    src: url("/public/fonts/inter/1593443255747-Inter-Light.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inter Medium";
+    src: url("/public/fonts/inter/1593443255805-Inter-Medium.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inter Black";
+    src: url("/public/fonts/inter/1593443255969-Inter-Black.otf") format("truetype");
 }

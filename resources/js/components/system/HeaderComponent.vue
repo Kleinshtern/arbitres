@@ -7,7 +7,7 @@
                     src="/logos/png/logo-no-background.png"
                     alt="logo"
                 >
-                <p class="h6 align-self-end">
+                <p class="h6 align-self-end d-sm-none d-md-none d-lg-block" style="font-family: 'Inter Medium', sans-serif">
                     Независимый сервис по оценке высших учебных заведений
                 </p>
             </div>

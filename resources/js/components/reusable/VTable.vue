@@ -83,6 +83,9 @@
 
 <style scoped lang="scss">
     .table {
+
+        font-family: "Inter Medium", sans-serif;
+
         &.table-rounded {
             th, td {
                 border: 0;

@@ -152,7 +152,7 @@
                     Мы провели анализ и собрали для вас лучшие вузы по оценкам пользователей из разных регионов.
                 </p>
             </div>
-            <div class="content-body">
+            <div class="content-body mt-5">
                 <v-table
                     :headers="headers"
                     :items="topTenTableData"
@@ -172,7 +172,24 @@
                         </span>
                         </div>
                     </template>
+                    <template #item.world_place="{ value }">
+                        <i class="fa-solid fa-wreath-laurel" style="color: var(--main-color)"></i> {{ value }}
+                    </template>
+                    <template #item.russian_place="{ value }">
+                        <i class="fa-solid fa-medal" style="color: var(--main-color)"></i> {{ value }}
+                    </template>
+                    <template #item.count_review="{ value }">
+                        <i class="fa-solid fa-files" style="color: var(--main-color)"></i> {{ value }}
+                    </template>
                 </v-table>
+            </div>
+            <div class="content-footer d-flex align-items-center justify-content-center mt-4 mb-5">
+                <custom-button
+                    label="Посмотреть все"
+                    variant="flat"
+                    color="#5280e2"
+                    text-transform="none"
+                ></custom-button>
             </div>
         </div>
     </div>
@@ -206,9 +223,9 @@
                 headers: [
                     { key: 'id', title: '№', alignment: 'center' },
                     { key: 'name', title: "Название организации" },
-                    { key: "world_place", title: "Мировой рейтинг" },
-                    { key: "russian_place", title: "Российский рейтинг" },
-                    { key: "count_review", title: "Отзывы компании" }
+                    { key: "world_place", title: "Мировой рейтинг", alignment: 'center' },
+                    { key: "russian_place", title: "Российский рейтинг", alignment: 'center' },
+                    { key: "count_review", title: "Отзывы компании", alignment: 'center' }
                 ]
             }
         },

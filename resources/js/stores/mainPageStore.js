@@ -139,10 +139,23 @@ export const useMainPageStore = defineStore("mainPageStore", {
                     }
                 },
             ]
-        }
+        },
+        topTenTableData: [
+            { id: 1, logo: '/university-logos/logo_vse.svg', name: 'Национальный исследовательский университет "Высшая школа экономики"', world_place: 305, russian_place: 5, count_review: 5620 },
+            { id: 2, logo: '/university-logos/msu_logo.svg', name: 'Московский государственный университет имени М.В.Ломоносова', world_place: 78, russian_place: 1, count_review: 4842 },
+            { id: 3, logo: '/university-logos/emblema_gerb_spbgu.svg', name: 'Санкт-Петербургский государственный университет СПбГУ', world_place: 242, russian_place: 3, count_review: 4280 },
+            { id: 4, logo: '/university-logos/mephi_logo.svg', name: 'Национальный исследовательский ядерный универститет "МИФИ"', world_place: 319, russian_place: 4, count_review: 4012 },
+            { id: 5, logo: '/university-logos/miph_logo.svg', name: 'Московский физико-технологический институт (национальный исследовательский универститет)', world_place: 290, russian_place: 2, count_review: 3864 },
+            { id: 6, name: 'Российский университет дружбы народов', world_place: 317, russian_place: 19, count_review: 3620 },
+            { id: 7, name: 'Московский финансово-промышленный университет', world_place: 2353, russian_place: 58, count_review: 3207 },
+            { id: 8, name: 'Московский государственный институт международных отношений МИД России', world_place: 362, russian_place: 7, count_review: 2981 },
+            { id: 9, name: 'Дальневосточный федеральный университет', world_place: 461, russian_place: 25, count_review: 2620 },
+            { id: 10, name: 'Уральский федеральный универститет имение первого Президента России Б.Н. Ельцина', world_place: 362, russian_place: 11, count_review: 2346 },
+        ]
     }),
     getters: {
         getInfoBlockData: (state) => state.infoBlock,
         getPopularReviews: (state) => state.popularReviews,
+        getTopTenTableData: state => state.topTenTableData
     }
 })

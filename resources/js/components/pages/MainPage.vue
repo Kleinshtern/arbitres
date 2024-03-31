@@ -152,19 +152,43 @@
                     Мы провели анализ и собрали для вас лучшие вузы по оценкам пользователей из разных регионов.
                 </p>
             </div>
+            <div class="content-body">
+                <v-table
+                    :headers="headers"
+                    :items="topTenTableData"
+                    item-key="id"
+                    hover-effect
+                >
+                    <template #header.name="{ value }">
+                        {{ value }}
+                    </template>
+                    <template #item.name="{ value, rootState }">
+                        <div class="organization">
+                            <template v-if="rootState.logo">
+                                <img :src="rootState.logo" :alt="`${value} logo`" class="logotype-univ">
+                            </template>
+                            <span class="name-univ">
+                            {{ rootState.name }}
+                        </span>
+                        </div>
+                    </template>
+                </v-table>
+            </div>
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
     import {useMainPageStore} from "../../stores/mainPageStore.js";
     import CustomButton from "../reusable/CustomButton.vue";
     import SliderComponent from "../reusable/SliderComponent.vue";
     import RatingComponent from "../reusable/RatingComponent.vue";
     import VCard from "../reusable/VCard.vue";
+    import VTable from "../reusable/VTable.vue";
 
     export default {
         components: {
+            VTable,
             VCard,
             RatingComponent,
             SliderComponent,
@@ -178,7 +202,15 @@
             }
         },
         data: () => {
-            return {}
+            return {
+                headers: [
+                    { key: 'id', title: '№', alignment: 'center' },
+                    { key: 'name', title: "Название организации" },
+                    { key: "world_place", title: "Мировой рейтинг" },
+                    { key: "russian_place", title: "Российский рейтинг" },
+                    { key: "count_review", title: "Отзывы компании" }
+                ]
+            }
         },
         computed: {
             informationBlock: function () {
@@ -186,6 +218,9 @@
             },
             popularReviews: function () {
                 return this.store.getPopularReviews
+            },
+            topTenTableData: function () {
+                return this.store.getTopTenTableData
             }
         }
     }
@@ -237,7 +272,6 @@
     }
 
     #top-ten-by-ratings {
-        height: 100vh;
         position: relative;
 
         display: flex;
@@ -260,6 +294,36 @@
 
         .content {
             margin-top: 100px;
+
+            .content-title {
+                text-align: center;
+            }
+
+            .content-body {
+                .organization {
+                    margin-left: 20px;
+
+                    display: flex;
+                    align-items: center;
+                    gap: 2rem;
+
+                    .logotype-univ {
+                        width: 100px;
+                        height: 100px;
+                        filter: grayscale(100%);
+                    }
+
+                    .name-univ {
+                        font-family: "Inter Medium", sans-serif;
+                    }
+                }
+
+                tr:hover {
+                    .logotype-univ {
+                        filter: grayscale(0%) !important;
+                    }
+                }
+            }
         }
     }
 </style>

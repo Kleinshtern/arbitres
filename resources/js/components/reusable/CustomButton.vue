@@ -1,8 +1,8 @@
 <template>
   <button
-      id="custom-button"
+      class="custom-button"
       type="button"
-      :class="variant"
+      :class="`${variant} ${block ? 'block' : ''}`"
       @click="event"
 
       :style="styles"
@@ -66,6 +66,11 @@
                 type: String,
                 required: false,
                 default: "uppercase"
+            },
+            block: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
         emits: [
@@ -83,18 +88,20 @@
         methods: {
             event: function() {
                 event.target.blur();
+                this.$emit('click');
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-  #custom-button
+  .custom-button
   {
       font-family: "Montserrat Medium", sans-serif;
 
       display: inline-flex;
       align-items: center;
+      justify-content: center;
 
       border-radius: 10px;
       padding: 15px 25px;
@@ -153,8 +160,9 @@
 
       > .label, .prepend-icon, .append-icon {
           filter: invert(1);
+          pointer-events: none;
 
-          &.outline, &.tonal, &.text, &.default {
+          &.outline, &.tonal, &.text, &.default, &.link, &.icon {
               filter: invert(0);
           }
       }
@@ -211,6 +219,39 @@
               &:after {
                   opacity: .3;
               }
+          }
+      }
+
+      &.link {
+          box-shadow: none;
+          color: var(--bs-link-color);
+
+          text-decoration: underline;
+          padding: 0;
+
+          &:before { display: none; }
+          &:after  { display: none; }
+
+          &:hover {
+              color: var(--bs-link-hover-color);
+          }
+      }
+
+      &.icon {
+          border-radius: 50%;
+          padding: 10px;
+
+          &.label {
+              display: none;
+          }
+      }
+
+      &.block {
+          width: 100%;
+
+          .label {
+              width: 100%;
+              text-align: center;
           }
       }
   }

@@ -1,198 +1,200 @@
 <template>
-    <div id="info-block">
-        <div class="col-sm-6">
-            <div class="row mb-2">
-                <h1 class="title">
-                    {{ informationBlock.title }}
-                </h1>
-                <p>
-                    <small>
-                        {{ informationBlock.subtitle }}
-                    </small>
-                </p>
-            </div>
+    <header>
+        <header-component></header-component>
+    </header>
+    <main>
+        <div id="info-block">
+            <div class="col-sm-6">
+                <div class="row mb-2">
+                    <h1 class="title">
+                        {{ informationBlock.title }}
+                    </h1>
+                    <p>
+                        <small>
+                            {{ informationBlock.subtitle }}
+                        </small>
+                    </p>
+                </div>
 
-            <custom-button
-                :prepend-icon="informationBlock.button.icon"
-                :label="informationBlock.button.label"
-                color="#5280e2"
-                variant="flat"
-                text-transform="default"
-            ></custom-button>
-
-        </div>
-        <div
-            id="university-image"
-            class="col-sm-6"
-            :style="`background-image: url('${informationBlock.image}')`"
-        />
-    </div>
-
-    <div id="popular-reviews">
-        <div class="row align-items-center mt-3 mb-2">
-            <div class="col-sm-9">
-                <h2 class="title">
-                    <i :class="popularReviews.icon" class="fa-rotate-by" style="--fa-rotate-angle: -25deg; color: var(--main-color)"></i>
-                    <span class="ms-2">
-                    {{ popularReviews.title }}
-                    </span>
-                </h2>
-            </div>
-            <div class="col-sm-3 d-flex justify-content-end">
                 <custom-button
-                    :label="popularReviews.button.label"
+                    :prepend-icon="informationBlock.button.icon"
+                    :label="informationBlock.button.label"
                     color="#5280e2"
                     variant="flat"
                     text-transform="default"
                 ></custom-button>
-            </div>
-        </div>
-        <div class="row">
-            <slider-component
-                :items="popularReviews.reviews"
-            >
-                <template v-slot:slider-content="{ item }">
-                    <p class="h6">
-                        <strong>{{ item.person }}</strong>
-                        <br>
-                        <small class="text-body-secondary">{{ item.date }}</small>
-                    </p>
-                    <rating-component :rating="item.rating"></rating-component>
-                    <p class="lh-lg fs-6">
-                        {{ item.text }}
-                    </p>
-                    <p>
-                        <small class="text-body-secondary">Отзыв про:</small>
-                        <br>
-                        <strong>{{ item.university.name }}</strong>
-                    </p>
-                </template>
-            </slider-component>
-        </div>
-    </div>
 
-    <div id="rating-and-found">
-        <div class="row mt-3 mb-2">
-            <div class="col-md-12 col-lg-8">
-                <div class="information">
+            </div>
+            <div
+                id="university-image"
+                class="col-sm-6"
+                :style="`background-image: url('${informationBlock.image}')`"
+            />
+        </div>
+        <div id="popular-reviews">
+            <div class="row align-items-center mt-3 mb-2">
+                <div class="col-sm-9">
                     <h2 class="title">
-                        Оценивайте и находите ВУЗы России!
+                        <i :class="popularReviews.icon" class="fa-rotate-by" style="--fa-rotate-angle: -25deg; color: var(--main-color)"></i>
+                        <span class="ms-2">
+                    {{ popularReviews.title }}
+                    </span>
                     </h2>
-                    <p>
-                        Мы взяли за основу "сливы" о вузах, которые пользователи нашего сайта
-                        присылают нам. Слив - это развернутый отзыв о вузе, который проходит несколько
-                        этапов проверки. Слив имеет заданную характеристику.
-                        Он может быть положительным, отрицательным или нейтральным.
-                        Мы просим студентов, преподавателей, сотрудников вуза, просто людей, которые знают о
-                        вузе изнутри.
-                    </p>
                 </div>
-                <div class="buttons-block">
+                <div class="col-sm-3 d-flex justify-content-end">
                     <custom-button
-                        label="Оставить отзыв"
+                        :label="popularReviews.button.label"
                         color="#5280e2"
                         variant="flat"
-                        prepend-icon="fa-solid fa-files"
                         text-transform="default"
                     ></custom-button>
-                    <custom-button
-                        label="Добавить вуз"
-                        color="#5280e2"
-                        variant="outline"
-                        prepend-icon="fa-regular fa-buildings"
-                        text-transform="default"
-                    ></custom-button>
-                </div>
-                <div class="cards-block mt-4 d-flex flex-md-column flex-lg-row justify-content-between gap-4">
-                    <v-card
-                        title="452 851"
-                        text="Отзывов в вашем городе"
-                        prepend-icon="fa-regular fa-city"
-                        alignment="right"
-                        variant="tonal"
-                        color="#5280e2"
-                        width="100%"
-                    />
-                    <v-card
-                        title="22 851"
-                        text="Ответов от компаний"
-                        prepend-icon="fa-regular fa-files"
-                        alignment="right"
-                        variant="tonal"
-                        color="#5280e2"
-                        width="100%"
-                    />
-                    <v-card
-                        title="8 512"
-                        text="Компаний на портале"
-                        prepend-icon="fa-regular fa-user-group"
-                        alignment="right"
-                        variant="tonal"
-                        color="#5280e2"
-                        width="100%"
-                    />
                 </div>
             </div>
-            <div class="col-md-0 col-lg-4 d-md-none d-lg-block" id="rating-and-found-image"></div>
+            <div class="row">
+                <slider-component
+                    :items="popularReviews.reviews"
+                >
+                    <template v-slot:slider-content="{ item }">
+                        <p class="h6">
+                            <strong>{{ item.person }}</strong>
+                            <br>
+                            <small class="text-body-secondary">{{ item.date }}</small>
+                        </p>
+                        <rating-component :rating="item.rating"></rating-component>
+                        <p class="lh-lg fs-6">
+                            {{ item.text }}
+                        </p>
+                        <p>
+                            <small class="text-body-secondary">Отзыв про:</small>
+                            <br>
+                            <strong>{{ item.university.name }}</strong>
+                        </p>
+                    </template>
+                </slider-component>
+            </div>
         </div>
-    </div>
+        <div id="rating-and-found">
+            <div class="row mt-3 mb-2">
+                <div class="col-md-12 col-lg-8">
+                    <div class="information">
+                        <h2 class="title">
+                            Оценивайте и находите ВУЗы России!
+                        </h2>
+                        <p>
+                            Мы взяли за основу "сливы" о вузах, которые пользователи нашего сайта
+                            присылают нам. Слив - это развернутый отзыв о вузе, который проходит несколько
+                            этапов проверки. Слив имеет заданную характеристику.
+                            Он может быть положительным, отрицательным или нейтральным.
+                            Мы просим студентов, преподавателей, сотрудников вуза, просто людей, которые знают о
+                            вузе изнутри.
+                        </p>
+                    </div>
+                    <div class="buttons-block">
+                        <custom-button
+                            label="Оставить отзыв"
+                            color="#5280e2"
+                            variant="flat"
+                            prepend-icon="fa-solid fa-files"
+                            text-transform="default"
+                        ></custom-button>
+                        <custom-button
+                            label="Добавить вуз"
+                            color="#5280e2"
+                            variant="outline"
+                            prepend-icon="fa-regular fa-buildings"
+                            text-transform="default"
+                        ></custom-button>
+                    </div>
+                    <div class="cards-block mt-4 d-flex flex-md-column flex-lg-row justify-content-between gap-4">
+                        <v-card
+                            title="452 851"
+                            text="Отзывов в вашем городе"
+                            prepend-icon="fa-regular fa-city"
+                            alignment="right"
+                            variant="tonal"
+                            color="#5280e2"
+                            width="100%"
+                        />
+                        <v-card
+                            title="22 851"
+                            text="Ответов от компаний"
+                            prepend-icon="fa-regular fa-files"
+                            alignment="right"
+                            variant="tonal"
+                            color="#5280e2"
+                            width="100%"
+                        />
+                        <v-card
+                            title="8 512"
+                            text="Компаний на портале"
+                            prepend-icon="fa-regular fa-user-group"
+                            alignment="right"
+                            variant="tonal"
+                            color="#5280e2"
+                            width="100%"
+                        />
+                    </div>
+                </div>
+                <div class="col-md-0 col-lg-4 d-md-none d-lg-block" id="rating-and-found-image"></div>
+            </div>
+        </div>
+        <div id="top-ten-by-ratings" class="mt-4">
+            <div class="overflow-background"></div>
 
-    <div id="top-ten-by-ratings" class="mt-4">
-        <div class="overflow-background"></div>
-
-        <div class="content">
-            <div class="content-title">
-                <h1 class="title">
+            <div class="content">
+                <div class="content-title">
+                    <h1 class="title">
                     <span style="color: var(--main-color); text-transform: uppercase">
                         <i class="fa-regular fa-trophy-star"></i> Топ 10
                     </span>
-                    ВУЗов по оценкам пользователей
-                </h1>
-                <p class="text-center">
-                    Мы провели анализ и собрали для вас лучшие вузы по оценкам пользователей из разных регионов.
-                </p>
-            </div>
-            <div class="content-body mt-5">
-                <v-table
-                    :headers="headers"
-                    :items="topTenTableData"
-                    item-key="id"
-                    hover-effect
-                >
-                    <template #header.name="{ value }">
-                        {{ value }}
-                    </template>
-                    <template #item.name="{ value, rootState }">
-                        <div class="organization">
-                            <template v-if="rootState.logo">
-                                <img :src="rootState.logo" :alt="`${value} logo`" class="logotype-univ">
-                            </template>
-                            <span class="name-univ">
+                        ВУЗов по оценкам пользователей
+                    </h1>
+                    <p class="text-center">
+                        Мы провели анализ и собрали для вас лучшие вузы по оценкам пользователей из разных регионов.
+                    </p>
+                </div>
+                <div class="content-body mt-5">
+                    <v-table
+                        :headers="headers"
+                        :items="topTenTableData"
+                        item-key="id"
+                        hover-effect
+                    >
+                        <template #header.name="{ value }">
+                            {{ value }}
+                        </template>
+                        <template #item.name="{ value, rootState }">
+                            <div class="organization">
+                                <template v-if="rootState.logo">
+                                    <img :src="rootState.logo" :alt="`${value} logo`" class="logotype-univ">
+                                </template>
+                                <span class="name-univ">
                             {{ rootState.name }}
                         </span>
-                        </div>
-                    </template>
-                    <template #item.world_place="{ value }">
-                        <i class="fa-solid fa-wreath-laurel" style="color: var(--main-color)"></i> {{ value }}
-                    </template>
-                    <template #item.russian_place="{ value }">
-                        <i class="fa-solid fa-medal" style="color: var(--main-color)"></i> {{ value }}
-                    </template>
-                    <template #item.count_review="{ value }">
-                        <i class="fa-solid fa-files" style="color: var(--main-color)"></i> {{ value }}
-                    </template>
-                </v-table>
-            </div>
-            <div class="content-footer d-flex align-items-center justify-content-center mt-4 mb-5">
-                <custom-button
-                    label="Посмотреть все"
-                    variant="flat"
-                    color="#5280e2"
-                    text-transform="none"
-                ></custom-button>
+                            </div>
+                        </template>
+                        <template #item.world_place="{ value }">
+                            <i class="fa-solid fa-wreath-laurel" style="color: var(--main-color)"></i> {{ value }}
+                        </template>
+                        <template #item.russian_place="{ value }">
+                            <i class="fa-solid fa-medal" style="color: var(--main-color)"></i> {{ value }}
+                        </template>
+                        <template #item.count_review="{ value }">
+                            <i class="fa-solid fa-files" style="color: var(--main-color)"></i> {{ value }}
+                        </template>
+                    </v-table>
+                </div>
+                <div class="content-footer d-flex align-items-center justify-content-center mt-4 mb-5">
+                    <custom-button
+                        label="Посмотреть все"
+                        variant="flat"
+                        color="#5280e2"
+                        text-transform="none"
+                    ></custom-button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 </template>
 
 <script lang="ts">
@@ -202,9 +204,11 @@
     import RatingComponent from "../reusable/RatingComponent.vue";
     import VCard from "../reusable/VCard.vue";
     import VTable from "../reusable/VTable.vue";
+    import HeaderComponent from "../system/HeaderComponent.vue";
 
     export default {
         components: {
+            HeaderComponent,
             VTable,
             VCard,
             RatingComponent,

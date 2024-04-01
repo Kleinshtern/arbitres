@@ -1,6 +1,6 @@
 <template>
     <div class="card-container" :class="`card-${variant}`" :style="styles">
-        <div class="card-icon">
+        <div class="card-icon" v-if="prependIcon">
             <slot name="prepend-icon">
                 <i :class="prependIcon"></i>
             </slot>
@@ -82,6 +82,7 @@
 <style scoped>
     .card-container {
         max-width: var(--max-width-card);
+        min-width: var(--max-width-card);
         display: flex;
         justify-content: space-between;
         gap: 0.4rem;
@@ -97,9 +98,13 @@
         }
 
         .card-content {
+            width: 100%;
+
             .card-title {
                 font-weight: bold;
                 font-size: 1.5rem;
+
+                padding: 10px 0;
             }
         }
 

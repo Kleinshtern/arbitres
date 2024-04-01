@@ -6,7 +6,7 @@ export const authenticateRoutes = {
     path: '/authenticate',
     component: AuthComponent,
     children: [
-        { path: 'login', component: Login },
-        { path: 'register', component: Register },
+        { path: 'login', component: Login, name: 'login' },
+        { path: 'register', component: Register, name: 'register' },
     ]
 }

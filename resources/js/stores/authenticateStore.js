@@ -28,6 +28,24 @@ export const authenticateStore = defineStore('authenticateStore', {
                             })
                     })
             })
+        },
+        registerUser(username, password) {
+            this.errorMessage = "";
+
+            return new Promise(resolve => {
+                axios.post('/api/users/register', {
+                    username, password
+                })
+                    .then((response) => {
+
+                    })
+                    .catch(error => {
+                        this.errorMessage = error.response.data.message;
+                    })
+                    .finally(() => {
+                        resolve();
+                    })
+            })
         }
     }
 });

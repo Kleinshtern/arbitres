@@ -25,6 +25,7 @@
                                 label="Нет аккаунта? Зарегистрироваться"
                                 text-transform="default"
                                 block
+                                @click="$router.push({ name: 'register' })"
                             >
                             </custom-button>
                         </div>

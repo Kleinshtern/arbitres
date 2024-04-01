@@ -43,7 +43,24 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        $credentials = $request->validate([
+            'username' => 'required|string|email',
+            'password' => 'required|string'
+        ]);
 
+        $user = new User();
+        $user->email = $credentials['username'];
+        $user->password = Hash::make($credentials['password']);
+
+        $user->save();
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response([
+            'user' => $user
+        ])->withCookie([
+            'token' => $token,
+        ]);
     }
 
 }

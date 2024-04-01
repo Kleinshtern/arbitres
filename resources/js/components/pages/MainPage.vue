@@ -113,7 +113,7 @@
                             alignment="right"
                             variant="tonal"
                             color="#5280e2"
-                            width="100%"
+                            width="33%"
                         />
                         <v-card
                             title="22 851"
@@ -122,7 +122,7 @@
                             alignment="right"
                             variant="tonal"
                             color="#5280e2"
-                            width="100%"
+                            width="33%"
                         />
                         <v-card
                             title="8 512"
@@ -131,7 +131,7 @@
                             alignment="right"
                             variant="tonal"
                             color="#5280e2"
-                            width="100%"
+                            width="33%"
                         />
                     </div>
                 </div>

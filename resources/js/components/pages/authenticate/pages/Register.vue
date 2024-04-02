@@ -6,7 +6,13 @@
         <template #text>
             <form @submit.prevent="submit">
                 <v-text-field
-                    placeholder="Логин"
+                    placeholder="Имя"
+                    v-model="fields.name.value.value"
+                    :error-message="fields.name.errorMessage.value"
+                >
+                </v-text-field>
+                <v-text-field
+                    placeholder="Email"
                     v-model="fields.username.value.value"
                     :error-message="fields.username.errorMessage.value"
                 ></v-text-field>
@@ -19,7 +25,7 @@
 
                 <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 d-flex align-items-center">
                             <custom-button
                                 variant="link"
                                 label="Назад"
@@ -55,8 +61,11 @@
     const store = authenticateStore();
 
     const schema = yup.object({
-        username: yup.string().email('Необходимо ввести Email').required('Введите логин'),
-        password: yup.string().required('Введите пароль')
+        username: yup.string().email('Необходимо ввести Email').required('Введите Email'),
+        password: yup.string()
+            .required('Введите пароль')
+            .min(8, 'Пароль должен иметь длину минимум 8 символов'),
+        name: yup.string().required('Введите Ваше имя')
     });
 
     const { handleSubmit } = useForm({
@@ -65,11 +74,12 @@
 
     const fields = {
         username: useField('username'),
-        password: useField('password')
+        password: useField('password'),
+        name: useField('name'),
     }
 
     const submit =  handleSubmit(values => {
-        store.registerUser(values.username, values.password);
+        store.registerUser(values.username, values.password, values.name);
     })
 </script>
 

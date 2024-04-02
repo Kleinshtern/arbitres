@@ -19,7 +19,7 @@
 
                 <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 d-flex align-items-center">
                             <custom-button
                                 variant="link"
                                 label="Нет аккаунта? Зарегистрироваться"

@@ -51,7 +51,7 @@
         headers: Array<HeaderProp>,
         items: [],
         itemKey?: '',
-        tableColor: string,
+        tableColor?: string,
         hoverEffect: boolean
     }
 

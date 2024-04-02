@@ -60,7 +60,8 @@
     import CustomButton from "../reusable/CustomButton.vue";
 
     import { defaultStore } from "../../stores/defaultStore.js";
-    import {mapStores} from "pinia";
+    import { mapStores } from "pinia";
+    import { authenticateStore } from "../../stores/authenticateStore.js";
 
     export default {
         components: {
@@ -71,7 +72,7 @@
             return {}
         },
         computed: {
-            ...mapStores(defaultStore),
+            ...mapStores(defaultStore, authenticateStore),
 
             socialButtonLinks() {
                 return this.defaultStore.getSocialNetworks;

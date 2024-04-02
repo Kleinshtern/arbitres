@@ -21,12 +21,6 @@
         @vite(['resources/js/app.js', 'resources/scss/app.scss'])
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="app"></div>
-                </div>
-            </div>
-        </div>
+        <div id="app"></div>
     </body>
 </html>

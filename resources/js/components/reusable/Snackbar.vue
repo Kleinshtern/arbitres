@@ -70,6 +70,8 @@
 
         font-family: "Montserrat Regular", sans-serif;
 
+        max-width: 80%;
+
         position: absolute;
         bottom: calc(5% - 30px);
         margin: 0 auto;

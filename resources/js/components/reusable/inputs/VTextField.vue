@@ -164,7 +164,7 @@
 
         .error {
             font-size: .9em;
-            padding: 0 15px;
+            padding: 10px 15px;
 
             color: red;
         }

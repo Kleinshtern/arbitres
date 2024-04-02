@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 import MainPage from "./components/pages/MainPage.vue";
 import { authenticateRoutes } from "./routes/authenticateRoutes.js";
+import {adminRoutes} from "./routes/adminRoutes.js";
 
 const routes = [
     {
@@ -9,7 +10,8 @@ const routes = [
         component: MainPage,
         name: 'MainPage'
     },
-    authenticateRoutes
+    authenticateRoutes,
+    adminRoutes
 ]
 
 export const router = createRouter({

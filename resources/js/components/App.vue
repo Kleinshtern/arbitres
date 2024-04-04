@@ -1,5 +1,5 @@
 <template>
-    <template v-if="isAuthenticated">
+    <template v-if="isAuthenticated && $route.path.split('/')[1] !== 'admin'">
         <div id="auth-block">
             <div id="user-info">
                 <b>{{ userInfo.user.name }} ({{ userInfo.user.email }})</b>

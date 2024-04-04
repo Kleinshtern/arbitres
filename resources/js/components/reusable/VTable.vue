@@ -1,9 +1,9 @@
 <template>
     <div  style="overflow: visible">
         <table
-            class="table table-rounded"
+            class="table table-border"
             :style="styles"
-            :class="hoverEffect ? 'hovered' : ''"
+            :class="`${hoverEffect ? 'hovered' : ''} ${rounded ? 'table-rounded' : ''}`"
         >
             <thead>
             <tr>
@@ -52,7 +52,8 @@
         items: [],
         itemKey?: '',
         tableColor?: string,
-        hoverEffect: boolean
+        hoverEffect?: boolean,
+        rounded?: boolean
     }
 
 
@@ -61,7 +62,8 @@
         items: [],
         itemKey: 'id',
         tableColor: 'var(--main-color)',
-        hoverEffect: false
+        hoverEffect: false,
+        rounded: false
     })
 </script>
 
@@ -83,34 +85,25 @@
 
 <style scoped lang="scss">
     .table {
-
         font-family: "Inter Medium", sans-serif;
 
-        &.table-rounded {
+        &.table-border {
             th, td {
-                border: 0;
-
                 &.alignment-center {
                     text-align: center;
                 }
             }
             th {
-                background-color: var(--table-color);
+                border: 0;
+                background: var(--table-color);
                 color: white;
             }
-            th:first-child {
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
+            td {
+                border: 1px solid var(--secondary-color);
             }
-            th:last-child {
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-
             tr {
                 vertical-align: middle;
             }
-
             thead {
                 &:after {
                     content: '';
@@ -119,27 +112,38 @@
                     margin-bottom: 20px;
                 }
             }
+        }
 
+        &.table-rounded {
+            th:first-child {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+            th:last-child {
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
             tbody {
                 tr {
                     &:first-child {
-                        > td:first-child {
+                        td:first-child {
                             border-top-left-radius: 10px;
                         }
-                        > td:last-child {
+                        td:last-child {
                             border-top-right-radius: 10px;
                         }
                     }
                     &:last-child {
-                        > td:first-child {
+                        td:first-child {
                             border-bottom-left-radius: 10px;
                         }
-                        > td:last-child {
+                        td:last-child {
                             border-bottom-right-radius: 10px;
                         }
                     }
 
                     td:not(:first-child) {
+                        border-top: 1px solid var(--secondary-color);
                         border-bottom: 1px solid var(--secondary-color);
                     }
                     td:not(:first-child, :last-child) {
@@ -153,7 +157,6 @@
                 }
             }
         }
-
         tr:first-child {
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
@@ -162,7 +165,6 @@
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
         }
-
         &.hovered {
             tbody {
                 tr:hover {

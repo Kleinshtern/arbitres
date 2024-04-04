@@ -24,3 +24,5 @@ Route::get('/user', function (Request $request) {
         'permissions' => $user->getAllPermissions(),
     ]);
 })->middleware('auth:sanctum');
+
+include('api/admin.php');

@@ -71,6 +71,11 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            withOutPaddings: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
         emits: [
@@ -81,7 +86,8 @@
                 return {
                     '--btn-background-color': this.color,
                     '--btn-border-color': this.color === 'white' || this.color === '#fff' ? '#000' : this.color,
-                    '--btn-text-transform': this.textTransform
+                    '--btn-text-transform': this.textTransform,
+                    '--btn-paddings': !this.withOutPaddings ? '15px 25px' : '0'
                 }
             }
         },
@@ -104,7 +110,7 @@
       justify-content: center;
 
       border-radius: 10px;
-      padding: 15px 25px;
+      padding: var(--btn-paddings);
 
       background: transparent;
 

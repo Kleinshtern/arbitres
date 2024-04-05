@@ -164,6 +164,7 @@
                                 :items="topTenTableData"
                                 item-key="id"
                                 hover-effect
+                                rounded
                             >
                                 <template #header.name="{ value }">
                                     {{ value }}

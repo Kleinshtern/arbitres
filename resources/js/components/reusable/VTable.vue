@@ -115,6 +115,9 @@
         }
 
         &.table-rounded {
+            td {
+                border: none;
+            }
             th:first-child {
                 border-top-left-radius: 10px;
                 border-bottom-left-radius: 10px;

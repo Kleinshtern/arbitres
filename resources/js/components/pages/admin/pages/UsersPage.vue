@@ -13,6 +13,7 @@
                             text-transform="default"
                             prepend-icon="fa-solid fa-plus"
                             label="Добавить пользователя"
+                            @click="showAddModal(null)"
                         ></custom-button>
                     </div>
                 </div>
@@ -26,21 +27,26 @@
                 <template #header.actions>
                     <i class="fa-solid fa-cog"></i>
                 </template>
-                <template #item.actions>
+                <template #item.actions="{ rootState }">
                     <custom-button
-                        variant="text"
-                        prepend-icon="fa-solid fa-edit"
+                        @click="showAddModal(rootState)"
+                        variant="plain"
+                        prepend-icon="fa-solid fa-pencil"
                         color="#5280e2"
                         with-out-paddings
                     ></custom-button>
                     <custom-button
-                        variant="text"
-                        prepend-icon="fa-solid fa-remove"
+                        variant="plain"
+                        prepend-icon="fa-solid fa-close"
                         color="#b00020"
                         with-out-paddings
                     ></custom-button>
                 </template>
             </v-table>
+
+            <create-user-modal
+                :user="editableUser"
+            ></create-user-modal>
         </main>
     </div>
 </template>
@@ -50,9 +56,10 @@
     import {mapStores} from "pinia";
     import VTable from "../../../reusable/VTable.vue";
     import CustomButton from "../../../reusable/CustomButton.vue";
+    import CreateUserModal from "../modals/CreateUserModal.vue";
 
     export default {
-        components: { CustomButton, VTable },
+        components: { CreateUserModal, CustomButton, VTable },
         data: () => {
             return {
                 headers: [
@@ -61,7 +68,9 @@
                     { key: "email", title: "Email", alignment: "center" },
                     { key: "created_at", title: "Дата создания" },
                     { key: "actions", title: '' }
-                ]
+                ],
+
+                editableUser: null
             }
         },
         created() {
@@ -74,6 +83,13 @@
 
             list: function() {
                 return this.adminStore.getUsersList;
+            }
+        },
+        methods: {
+            showAddModal: function (user) {
+                this.editableUser = user;
+
+                this.adminStore.changeVisiblyCreateUserModal(true);
             }
         }
     }

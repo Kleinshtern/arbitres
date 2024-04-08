@@ -124,7 +124,7 @@
 
         .label {
             position: absolute;
-            top: calc(25% + 10px);
+            top: 25%;
             left: 0;
 
             padding-left: 15px;

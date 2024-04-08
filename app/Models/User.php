@@ -69,4 +69,17 @@ class User extends Authenticatable
     {
         $this->password = Hash::make($password);
     }
+
+    public static function createUser(array $data): User
+    {
+        $user = new self([
+            'name' => $data['name'],
+            'email' => $data['email']
+        ]);
+
+        $user->setPassword($data['password']);
+        $user->save();
+
+        return $user;
+    }
 }

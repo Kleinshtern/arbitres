@@ -168,7 +168,7 @@
           filter: invert(1);
           pointer-events: none;
 
-          &.outline, &.tonal, &.text, &.default, &.link, &.icon {
+          &.outline, &.tonal, &.text, &.default, &.link, &.icon, &.plain {
               filter: invert(0);
           }
       }
@@ -249,6 +249,17 @@
 
           &.label {
               display: none;
+          }
+      }
+
+      &.plain {
+          box-shadow: none;
+          background-color: transparent;
+
+          color: var(--btn-background-color);
+
+          &:before {
+              background: none;
           }
       }
 

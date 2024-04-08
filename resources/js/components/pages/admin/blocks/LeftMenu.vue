@@ -5,7 +5,10 @@
             :key="key"
             :label="link.label"
             :prepend-icon="link.icon"
-            :route="link.route">
+            :route="link.route"
+            :type="link.type"
+            :children="link.children"
+        >
         </menu-link>
     </div>
 </template>

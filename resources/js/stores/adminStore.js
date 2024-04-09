@@ -4,19 +4,19 @@ import axios from "axios";
 export const adminStore = defineStore("admin", {
     state: () => ({
         menuLinks: [
-            { label: "Вернуться на главную", icon: "fa-solid fa-chevron-left", route: { name: "MainPage" } },
-            { label: "Список пользователей", icon: "fa-solid fa-list", route: { name: "usersList" } },
-            { label: "Роли и привилегии", icon: "fa-solid fa-user", route: { name: "rolesList" } },
+            { id: 1, label: "Вернуться на главную", icon: "fa-solid fa-chevron-left", route: { name: "MainPage" }, type: 'default' },
+            { id: 2, label: "Список пользователей", icon: "fa-solid fa-list", route: { name: "usersList" }, type: 'default' },
+            { id: 3, label: "Роли и привилегии", icon: "fa-solid fa-user", route: { name: "rolesList" }, type: 'default' },
             {
+                id: 4,
                 label: "Структура сайта",
                 icon: "fa-solid fa-memo-circle-info",
                 type: "dropdown",
                 children: [
-                    { label: "Главная", icon: "fa-solid fa-page ", route: { name: "settingMainPage" }},
-                    { label: "Главная 2", icon: "fa-solid fa-page", route: { name: "settingMainPage" }},
+                    { id: 5, label: "Главная", icon: "fa-regular fa-page ", route: { name: "settingMainPage" }, type: 'default' },
                 ]
             },
-            { label: "Ссылка 2", icon: "fa-solid fa-link" }
+            { id: 6, label: "Ссылка 2", icon: "fa-solid fa-link", type: 'default' }
         ],
 
         usersList: [],

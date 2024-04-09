@@ -2,42 +2,48 @@
     <div
         class="menu-link"
         :class="`${route.name === $route.name ? 'active' : ''} ${type === 'dropdown' ? 'dropdown' : ''}`"
-        @click="type === 'dropdown' ? switchDropdown() : $router.push(route)"
     >
         <template v-if="type === 'default'">
-            <template v-if="prependIcon">
-                <i :class="prependIcon"></i>
-            </template>
-            <div class="label">
-                <span class="text">{{ label }}</span>
-            </div>
-        </template>
-
-        <template v-else-if="type === 'dropdown'">
-            <div
-                class="dropdown-label"
-            >
+            <div class="default-link" @click="goToRoute(route)">
                 <template v-if="prependIcon">
                     <i :class="prependIcon"></i>
                 </template>
                 <div class="label">
                     <span class="text">{{ label }}</span>
-
-                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
             </div>
-            <div
-                class="dropdown-content"
-            >
+        </template>
+
+        <template v-else-if="type === 'dropdown'">
+            <div class="dropdown-link">
                 <div
-                    class="child-link"
-                    v-for="child in children"
+                    class="dropdown-label"
+                    @click="switchDropdown()"
                 >
-                    <template v-if="child.icon">
-                        <i :class="child.icon"></i>
+                    <template v-if="prependIcon">
+                        <i :class="prependIcon"></i>
                     </template>
                     <div class="label">
-                        <span class="text">{{ child.label }}</span>
+                        <span class="text">{{ label }}</span>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div
+                    class="dropdown-content"
+                >
+                    <div
+                        class="child-link"
+                        v-for="child in children"
+                        :key="child.id"
+                        @click="goToRoute(child.route)"
+                    >
+                        <template v-if="child.icon">
+                            <i :class="child.icon"></i>
+                        </template>
+                        <div class="label">
+                            <span class="text">{{ child.label }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,8 +83,13 @@
             switchDropdown: function () {
                 let parent = event.target.parentNode;
                 let contentBlock = parent.querySelector('.dropdown-content');
+                let label = parent.querySelector('.dropdown-label');
 
+                label.classList.toggle('active');
                 contentBlock.classList.toggle('active');
+            },
+            goToRoute: function (route) {
+                this.$router.push(route);
             }
         }
     }
@@ -93,6 +104,15 @@
 
         gap: .5rem;
         padding: 0 20px;
+
+        .default-link {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+
+            width: 100%;
+            height: inherit;
+        }
 
         &.dropdown {
             gap: 0;
@@ -117,6 +137,10 @@
                     background: #abc6ff;
                 }
 
+                &.active {
+                    background: #abc6ff;
+                }
+
                 .label, .text, i {
                     pointer-events: none;
                 }
@@ -128,11 +152,13 @@
                 overflow: hidden;
 
                 transition-property: max-height;
-                transition-duration: .3s;
-                transition-timing-function: ease-out;
+                transition-duration: .5s;
+                transition-timing-function: cubic-bezier(0, 1, 0, 1);
 
                 &.active {
-                    max-height: 100%;
+                    max-height: 9999px;
+                    transition-timing-function: cubic-bezier(0.5, 0, 1, 0);
+                    transition-delay: 0s;
                 }
             }
         }
@@ -152,6 +178,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            pointer-events: none;
         }
     }
 </style>

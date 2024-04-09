@@ -1,20 +1,22 @@
 <template>
-    <div id="left-menu">
-        <menu-link
+    <ul id="left-menu">
+        <li
             v-for="(link, key) in menuLinks"
             :key="key"
-            :label="link.label"
-            :prepend-icon="link.icon"
-            :route="link.route"
-            :type="link.type"
-            :children="link.children"
         >
-        </menu-link>
-    </div>
+            <template v-if="link.type === 'default'">
+                <menu-link
+                    :label="link.label"
+                    :prepend-icon="link.icon"
+                    :route="link.route"
+                ></menu-link>
+            </template>
+        </li>
+    </ul>
 </template>
 
 <script>
-    import MenuLink from "../../../reusable/MenuLink.vue";
+    import MenuLink from "../ui/MenuLink.vue";
     import {mapStores} from "pinia";
 
     import {adminStore} from "../../../../stores/adminStore.js";
@@ -26,7 +28,7 @@
                 return router
             }
         },
-        components: {MenuLink},
+        components: { MenuLink },
         data: () => {
             return {}
         },
@@ -44,5 +46,9 @@
     #left-menu {
         height: 100vh;
         background: var(--secondary-color);
+
+        padding: 0;
+        margin: 0;
+        list-style: none;
     }
 </style>
